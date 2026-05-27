@@ -910,3 +910,120 @@ h1 {
 .drive-links a:hover {
   background-color: #e0f0ff;
 }
+
+/* =========================================
+   組織章程頁面 (org-章程.html) 專用樣式
+========================================= */
+#plans-container { 
+  position: relative; 
+  overflow: visible; 
+}
+#arrow-svg {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  pointer-events: none;
+  z-index: 2;
+}
+marker#arrowhead polygon {
+  fill: #0078d7;
+}
+.plan-table th,
+.plan-table td {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================
+   學期行事曆頁面 (org-行事曆.html) 專用樣式
+========================================= */
+.calendar-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.calendar-section {
+  width: 50%;
+}
+.calendar-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
+}
+ul.calendar {
+  list-style-type: none;
+  padding: 0;
+}
+ul.calendar li {
+  background-color: #fff;
+  margin: 0.5rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 讓手機版觀看時，左右兩欄自動變成上下排列 */
+@media (max-width: 768px) {
+  .calendar-container {
+    flex-direction: column;
+  }
+  .calendar-section {
+    width: 100%;
+  }
+}
+
+/* 首頁四格版型 (覆蓋原有設定) */
+.systematics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.systematics > div {
+  width: 200px;
+}
+.systematics img {
+  width: 100%;
+  border-radius: 8px;
+}
+.systematics h2 {
+  margin-top: 0.5em;
+}
+
+/* =========================================
+   社團簡介頁面 (社團簡介.html) 補充樣式
+========================================= */
+.org-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.intro-hr {
+  max-width: 900px;
+  margin: 60px auto;
+  border: 1px solid #8b735b;
+}
+h1.main-title {
+  font-size: 2.5em;
+  color: #4A3F35;
+  margin-bottom: 20px;
+  text-align: center;
+}
+/* 避免跟活動頁面的 .section 撞名，改用 .intro-section */
+.intro-section {
+  margin-bottom: 3rem;
+}
+.intro-section p {
+  line-height: 1.8;
+  text-align: justify;
+  color: #333;
+}
