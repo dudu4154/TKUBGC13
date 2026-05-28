@@ -28,7 +28,10 @@ h1 {
   display: block;
 }
 main {
-  padding: 2rem;
+  max-width: 1000px;      
+  margin: 0 auto;       
+  padding: 0 2rem 2rem;  
+  box-sizing: border-box;
 }
 .no-list-style {
   list-style: none;
@@ -36,43 +39,85 @@ main {
 }
 
 /* =========================================
-   2. 導覽列與頁尾 (Header & Footer)
+   完美的導覽列 (Header & 多層次選單)
 ========================================= */
+/* 1. 最外層包裝：強制透明背景與移除底線 */
 header {
-  background-color: #fff8f0;
-  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #e0d6c6;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* 💡 關鍵 1：把左右 padding 改成 2rem，跟底下的 main 完美對齊切齊！ */
+  padding: 1.5rem 2rem;
+  background-color: transparent !important; 
+  border-bottom: none !important;           
+  box-sizing: border-box;
 }
-.title, header h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #6e4f3a;
+
+.title {
+  margin: 0;
 }
+
+/* 2. 標題文字顏色：改成右邊的深褐色 */
 .title a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5c4033;                /* 💡 關鍵 2：改回有質感的深褐色 */
   text-decoration: none;
-  color: inherit;
+  letter-spacing: 1px;
 }
+
+/* 3. 導覽列選項文字顏色：改成右邊的深褐色 */
+.dropdown > a {
+  text-decoration: none;
+  color: #6e4f3a;                /* 💡 關鍵 3：選單也改回深褐色 */
+  font-weight: 500;
+  padding: 0.5rem 0;
+  display: block;
+  transition: color 0.2s;
+}
+
+.dropdown > a:hover {
+  color: #8b735b;                
+}
+
+/* 2. 第一層主選單：靠右對齊、殺掉黑點 */
 .dropdown-menu {
-  list-style: none;
+  list-style: none;            /* 絕對不顯示黑點 */
   display: flex;
   gap: 1.5rem;
   margin: 0;
   padding: 0;
-  flex-wrap: wrap;
+  margin-left: auto;           /* 強制把選單推到最右邊 */
 }
+
+/* 確保所有層級的清單都沒有黑點 */
+.dropdown-menu li, 
+.dropdown-content li, 
+.sub-dropdown-content li {
+  list-style: none;            
+}
+
 .dropdown {
   position: relative;
 }
-.dropdown a {
+
+.dropdown > a {
   text-decoration: none;
   color: #6e4f3a;
   font-weight: 500;
   padding: 0.5rem 0;
   display: block;
+  transition: color 0.2s;
 }
+
+.dropdown > a:hover {
+  color: #8b735b;              /* 滑鼠滑過變淺咖啡色 */
+}
+
+/* 3. 第二層選單 (向下展開) */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -84,164 +129,170 @@ header {
   z-index: 10;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  white-space: nowrap;
-  word-break: keep-all;
+  padding: 0;
+  margin: 0;
 }
-.dropdown-content li {
-  list-style: none;
+
+/* 修正最後一個「財務管理」不要超出螢幕 */
+.dropdown-menu > li:last-child .dropdown-content {
+  left: auto;
+  right: 0;
 }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .dropdown-content li a {
   display: block;
   padding: 0.6rem 1rem;
   color: #5c4033;
   font-weight: 400;
+  text-decoration: none;
+  transition: background-color 0.2s;
 }
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+
 .dropdown-content li a:hover {
   background-color: #f3eae0;
 }
-footer {
-  background-color: #fff8f0;
-  padding: 2rem;
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  border-top: 1px solid #e0d6c6;
+
+/* 4. 第三層子選單 (向左邊展開) */
+.sub-dropdown {
+  position: relative;
 }
-footer div {
-  flex: 1;
+
+.arrow-right {
+  float: right;
+  font-size: 0.8rem;
+  color: #998473;
+  margin-left: 5px;
 }
-footer h4 {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  color: #6e4f3a;
-}
-footer p {
+
+.sub-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 100%;                 /* 往左邊推 */
+  top: -1px;                   /* 高度完美對齊母選單 */
+  margin-right: 4px;           /* 留出 4px 的漂亮縫隙 */
+  background-color: #fefaf3;
+  border: 1px solid #e6dccd;
+  min-width: 180px;
+  z-index: 20;
+  border-radius: 6px;
+  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 0;
   margin: 0;
-  font-size: 1rem;
 }
-footer a {
-  color: #5c4033;
-}
-footer a:hover {
-  color: #777777;
+
+.sub-dropdown:hover .sub-dropdown-content {
+  display: block;
 }
 
 /* =========================================
-   3. 首頁專用 (社團.html)
+   3. 首頁專用 (社團.html) - 高顏值美化版
 ========================================= */
 .home-main, .mind, .welcome {
   text-align: center;
-  margin: 2rem auto;
+  margin: 3rem auto;
   max-width: 800px;
 }
-.hero {
-  position: relative;
-  width: 100%;
-  height: 60vh;
-  background: url('image/收班照.JPG') center/cover no-repeat;
+
+/* 讓鼠歌頌的詩詞看起來更有質感 */
+.mind h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #4A3F35;
+  margin: 0.8rem 0;
+  letter-spacing: 1px;
 }
-.hero .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
+
+/* 讓招募文字有層次 */
+.welcome p {
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 1.5rem;
 }
-.hero h1 {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  margin: 0;
-  color: #fff;
-  font-size: 3rem;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
-  white-space: nowrap;
-}
-.founding {
-  text-align: center;
-  margin: 2rem 0;
-}
-.founding p {
-  font-size: 1.1rem;
+
+/* 🎯 關鍵：把純文字超連結變成跟對方一樣的「精美外框按鈕」 */
+.mind a, .welcome a {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 0.95rem;
   font-weight: bold;
+  color: #5d432c;           /* 質感深駝色文字 */
+  background-color: #fff;   /* 純白底色 */
+  border: 2px solid #eae3da;/* 柔和的淺米色邊框 */
+  border-radius: 8px;       /* 圓角 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 微妙的陰影 */
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
-.mission {
-  max-width: 800px;
-  margin: 0 auto 3rem;
-  text-align: center;
+
+/* 按鈕滑鼠懸停特效 */
+.mind a:hover, .welcome a:hover {
+  background-color: #5d432c;
+  color: #fff;
+  border-color: #5d432c;
+  transform: translateY(-2px); /* 輕微往上飄浮 */
+  box-shadow: 0 4px 8px rgba(93,67,44,0.2);
 }
-.mission h2 {
-  color: #5a1984;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-.mission p {
-  line-height: 1.6;
-  margin: .8rem 0;
-}
-/* 四格桌遊分類 */
-/* 四格桌遊分類 - 終極進化版 */
+
+/* 🎴 四格桌遊分類卡片美化 */
 .systematics {
   display: grid;
-  /* 預設：在桌機大螢幕上呈現完美的 1x4 橫排 */
   grid-template-columns: repeat(4, 200px);
   justify-content: center;
   gap: 2rem;
-  margin: 2rem auto;
+  margin: 3rem auto;
   padding: 20px;
-  max-width: 1000px;
 }
 
 .systematics div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 200px;
-  height: 280px;
   background-color: #fff;
+  border-radius: 12px;
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); /* 細緻卡片陰影 */
   box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.systematics div:hover {
+  transform: translateY(-5px); /* 懸停時整張卡片浮起來 */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .systematics img {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
+  height: 200px;             /* 稍微拉高一點，讓圖片變威風 */
+  object-fit: cover;         /* 防止圖片被比例壓扁 */
   border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.systematics img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .systematics h2 {
-  margin-top: auto;
-  font-size: 20px;
+  margin: 0.8rem 0 0 0;
+  font-size: 18px;
   font-weight: bold;
 }
 
-/* 📱 響應式魔法：當螢幕寬度小於 950px 時，自動切換為 2x2 排版 */
+.systematics h2 a {
+  color: #5d432c;
+}
+.systematics h2 a:hover {
+  text-decoration: none;
+  color: #8b735b;
+}
+
+/* 📱 響應式：平板尺寸自動變 2x2 */
 @media (max-width: 950px) {
   .systematics {
     grid-template-columns: repeat(2, 200px);
   }
 }
-
-/* 📱 手機板魔法：當螢幕更小（小於 500px）時，變成 1x1 直排，方便單手滑動 */
+/* 📱 響應式：手機尺寸自動變 1x1 */
 @media (max-width: 500px) {
   .systematics {
     grid-template-columns: repeat(1, 200px);
   }
-}
-section.mind h1 {
-  font-size: 1.6rem;
-  color: #5c4033;
 }
 
 /* =========================================
@@ -249,14 +300,17 @@ section.mind h1 {
 ========================================= */
 .image-banner {
   width: 100%;
-  height: 300px;
-  background-color: #ddd;
+  max-height: 450px;      /* 控制照片最高高度，避免佔滿整個螢幕 */
+  overflow: hidden;
   margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: #777;
+  border-radius: 8px;     /* 加上精緻的圓角 */
+}
+
+.image-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* 確保照片填滿方塊且不變形 */
+  display: block;
 }
 .org-image {
   max-width: 100%;
@@ -683,4 +737,64 @@ ul.calendar li {
 }
 .hover-info:hover .popover {
   display: block;
+}
+
+/* =========================================
+   全站通用：精美外框按鈕樣式 (套用於各頁面)
+========================================= */
+.btn-outline {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #5d432c;           /* 質感深駝色文字 */
+  background-color: #fff;   /* 純白底色 */
+  border: 2px solid #eae3da;/* 柔和的淺米色邊框 */
+  border-radius: 8px;       /* 圓角 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 微妙陰影 */
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 按鈕滑鼠懸停特效 */
+.btn-outline:hover {
+  background-color: #5d432c;
+  color: #fff;
+  border-color: #5d432c;
+  transform: translateY(-2px); /* 輕微往上飄浮 */
+  box-shadow: 0 4px 8px rgba(93,67,44,0.2);
+  text-decoration: none;       /* 懸停時不顯示底線 */
+}
+/* =========================================
+   規章辦法專用排版 (.doc-content)
+========================================= */
+.doc-content {
+  max-width: 900px;
+  margin: 0 auto 4rem auto;
+  color: #333;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  text-align: justify;
+}
+
+/* 針對「第一項 總則」這種大標題 */
+.doc-content h2 {
+  font-size: 1.25rem;
+  color: #5c4033;
+  margin-top: 2.5rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid #e0d6c6;
+  padding-bottom: 0.5rem;
+}
+
+/* 針對「第一條...」進行第一層縮排 */
+.doc-content p.clause {
+  margin: 0.5rem 0 0.5rem 2rem;
+}
+
+/* 針對「(1.)...」進行第二層縮排 */
+.doc-content p.sub-clause {
+  margin: 0.3rem 0 0.3rem 4rem;
+  color: #555;
 }
