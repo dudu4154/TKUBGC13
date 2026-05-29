@@ -1,0 +1,800 @@
+/* =========================================
+   1. 全域與基本設定 (Global Styles)
+========================================= */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #fdfaf5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+a {
+  color: #333333;
+  text-decoration: none;
+}
+a:hover {
+  color: #666666;
+  text-decoration: underline;
+}
+h1 {
+  text-align: center;
+  color: #4A3F35;
+  font-size: 2.2em;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: block;
+}
+main {
+  max-width: 1000px;      
+  margin: 0 auto;       
+  padding: 0 2rem 2rem;  
+  box-sizing: border-box;
+}
+.no-list-style {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* =========================================
+   完美的導覽列 (Header & 多層次選單)
+========================================= */
+/* 1. 最外層包裝：強制透明背景與移除底線 */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* 💡 關鍵 1：把左右 padding 改成 2rem，跟底下的 main 完美對齊切齊！ */
+  padding: 1.5rem 2rem;
+  background-color: transparent !important; 
+  border-bottom: none !important;           
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0;
+}
+
+/* 2. 標題文字顏色：改成右邊的深褐色 */
+.title a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5c4033;                /* 💡 關鍵 2：改回有質感的深褐色 */
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+/* 3. 導覽列選項文字顏色：改成右邊的深褐色 */
+.dropdown > a {
+  text-decoration: none;
+  color: #6e4f3a;                /* 💡 關鍵 3：選單也改回深褐色 */
+  font-weight: 500;
+  padding: 0.5rem 0;
+  display: block;
+  transition: color 0.2s;
+}
+
+.dropdown > a:hover {
+  color: #8b735b;                
+}
+
+/* 2. 第一層主選單：靠右對齊、殺掉黑點 */
+.dropdown-menu {
+  list-style: none;            /* 絕對不顯示黑點 */
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  margin-left: auto;           /* 強制把選單推到最右邊 */
+}
+
+/* 確保所有層級的清單都沒有黑點 */
+.dropdown-menu li, 
+.dropdown-content li, 
+.sub-dropdown-content li {
+  list-style: none;            
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown > a {
+  text-decoration: none;
+  color: #6e4f3a;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  display: block;
+  transition: color 0.2s;
+}
+
+.dropdown > a:hover {
+  color: #8b735b;              /* 滑鼠滑過變淺咖啡色 */
+}
+
+/* 3. 第二層選單 (向下展開) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fefaf3;
+  border: 1px solid #e6dccd;
+  min-width: 180px;
+  z-index: 10;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 0;
+  margin: 0;
+}
+
+/* 修正最後一個「財務管理」不要超出螢幕 */
+.dropdown-menu > li:last-child .dropdown-content {
+  left: auto;
+  right: 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content li a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #5c4033;
+  font-weight: 400;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.dropdown-content li a:hover {
+  background-color: #f3eae0;
+}
+
+/* 4. 第三層子選單 (向左邊展開) */
+.sub-dropdown {
+  position: relative;
+}
+
+.arrow-right {
+  float: right;
+  font-size: 0.8rem;
+  color: #998473;
+  margin-left: 5px;
+}
+
+.sub-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 100%;                 /* 往左邊推 */
+  top: -1px;                   /* 高度完美對齊母選單 */
+  margin-right: 4px;           /* 留出 4px 的漂亮縫隙 */
+  background-color: #fefaf3;
+  border: 1px solid #e6dccd;
+  min-width: 180px;
+  z-index: 20;
+  border-radius: 6px;
+  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 0;
+  margin: 0;
+}
+
+.sub-dropdown:hover .sub-dropdown-content {
+  display: block;
+}
+
+/* =========================================
+   3. 首頁專用 (社團.html) - 高顏值美化版
+========================================= */
+.home-main, .mind, .welcome {
+  text-align: center;
+  margin: 3rem auto;
+  max-width: 800px;
+}
+
+/* 讓鼠歌頌的詩詞看起來更有質感 */
+.mind h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #4A3F35;
+  margin: 0.8rem 0;
+  letter-spacing: 1px;
+}
+
+/* 讓招募文字有層次 */
+.welcome p {
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* 🎯 關鍵：把純文字超連結變成跟對方一樣的「精美外框按鈕」 */
+.mind a, .welcome a {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #5d432c;           /* 質感深駝色文字 */
+  background-color: #fff;   /* 純白底色 */
+  border: 2px solid #eae3da;/* 柔和的淺米色邊框 */
+  border-radius: 8px;       /* 圓角 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 微妙的陰影 */
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* 按鈕滑鼠懸停特效 */
+.mind a:hover, .welcome a:hover {
+  background-color: #5d432c;
+  color: #fff;
+  border-color: #5d432c;
+  transform: translateY(-2px); /* 輕微往上飄浮 */
+  box-shadow: 0 4px 8px rgba(93,67,44,0.2);
+}
+
+/* 🎴 四格桌遊分類卡片美化 */
+.systematics {
+  display: grid;
+  grid-template-columns: repeat(4, 200px);
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem auto;
+  padding: 20px;
+}
+
+.systematics div {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); /* 細緻卡片陰影 */
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.systematics div:hover {
+  transform: translateY(-5px); /* 懸停時整張卡片浮起來 */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.systematics img {
+  width: 100%;
+  height: 200px;             /* 稍微拉高一點，讓圖片變威風 */
+  object-fit: cover;         /* 防止圖片被比例壓扁 */
+  border-radius: 8px;
+}
+
+.systematics h2 {
+  margin: 0.8rem 0 0 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.systematics h2 a {
+  color: #5d432c;
+}
+.systematics h2 a:hover {
+  text-decoration: none;
+  color: #8b735b;
+}
+
+/* 📱 響應式：平板尺寸自動變 2x2 */
+@media (max-width: 950px) {
+  .systematics {
+    grid-template-columns: repeat(2, 200px);
+  }
+}
+/* 📱 響應式：手機尺寸自動變 1x1 */
+@media (max-width: 500px) {
+  .systematics {
+    grid-template-columns: repeat(1, 200px);
+  }
+}
+
+/* =========================================
+   4. 社團簡介 (社團簡介.html)
+========================================= */
+.image-banner {
+  width: 100%;
+  max-height: 450px;      /* 控制照片最高高度，避免佔滿整個螢幕 */
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border-radius: 8px;     /* 加上精緻的圓角 */
+}
+
+.image-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* 確保照片填滿方塊且不變形 */
+  display: block;
+}
+.org-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.intro-hr {
+  max-width: 900px;
+  margin: 60px auto;
+  border: 1px solid #8b735b;
+}
+h1.main-title {
+  font-size: 2.5em;
+  color: #4A3F35;
+  margin-bottom: 20px;
+}
+.intro-section {
+  margin-bottom: 3rem;
+}
+.intro-section p {
+  line-height: 1.8;
+  text-align: justify;
+  color: #333;
+}
+.inherit-link {
+  color: #5d432c;
+  cursor: pointer;
+  font-size: 0.5em;
+}
+.inherit-link:hover {
+  text-decoration: underline;
+}
+/* 3D 翻轉卡片 */
+.intro-container, .intro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  gap: 30px; 
+  width: 840px; 
+  margin: 30px auto 0 auto;
+}
+.intro-container {
+  grid-template-rows: repeat(3, 250px);
+}
+.card, .center {
+  width: 250px;
+  height: 250px;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  background-color: #fff;
+}
+.card-front img {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+.card-front p {
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #333;
+}
+.card-back {
+  background-color: #8b735b;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+  padding: 10px;
+  font-size: 1em;
+}
+.card-back-content {
+  text-align: left;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+.center {
+  flex-direction: column;
+  background-color: transparent;
+  box-shadow: none;
+}
+.center h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #5d432c;
+}
+.center p {
+  font-size: 1.5em;
+  margin: 10px 0 20px 0;
+  color: white;
+}
+.theme-colors {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.color-block {
+  width: 25px;
+  height: 25px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+.color1 { background-color: #5d432c; }
+.color2 { background-color: #8b735b; }
+.color3 { background-color: #d4c1ac; }
+.color4 { background-color: #eae3da; }
+.color5 { background-color: #f4f1ed; }
+
+/* =========================================
+   5. 活動頁面 (上學期/下學期.html)
+========================================= */
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.section:nth-child(odd) {
+  background-color: #fdf6e3;
+  flex-direction: row;
+}
+.section:nth-child(even) {
+  background-color: #fefcf9;
+  flex-direction: row-reverse;
+}
+.section-text {
+  flex: 1;
+  padding: 1rem;
+}
+.section-text h2 {
+  margin-top: 0;
+  color: #6a4e3b;
+}
+.section-image {
+  flex: 1;
+  padding: 1rem;
+}
+.section-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.pdca-links {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.section:nth-child(odd) .pdca-links {
+  right: 10px;
+}
+.section:nth-child(even) .pdca-links {
+  left: 10px;
+}
+.pdca-links a {
+  text-decoration: none;
+  padding: 6px 10px;
+  background-color: #DEB887;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* =========================================
+   6. 組織章程與行事曆 (org-章程 / 行事曆)
+========================================= */
+#plans-container { 
+  position: relative; 
+  overflow: visible; 
+  text-align: center;
+  width: 100%;
+}
+#arrow-svg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%; 
+  pointer-events: none;
+  z-index: 2;
+}
+marker#arrowhead polygon {
+  fill: #0078d7;
+}
+.plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  text-align: center;
+}
+.plan-table th,
+.plan-table td {
+  border: 1px solid #d8cab0;
+  padding: 0.8em;
+  vertical-align: top;
+  position: relative;
+  z-index: 1;
+}
+.plan-table th {
+  background-color: #f7f2e9;
+  text-align: center;
+}
+.plan-table tbody tr:nth-child(even) {
+  background-color: #fbf8f0;
+}
+.plan-table ol, .plan-table ul {
+  margin: 0.2em 0 0.2em 1.2em;
+  text-align: left;
+}
+.calendar-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.calendar-section {
+  width: 50%;
+}
+.calendar-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
+}
+ul.calendar {
+  list-style-type: none;
+  padding: 0;
+}
+ul.calendar li {
+  background-color: #fff;
+  margin: 0.5rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+@media (max-width: 768px) {
+  .calendar-container {
+    flex-direction: column;
+  }
+  .calendar-section {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   7. 桌遊搜尋與雲端硬碟 (game-search / 會議紀錄)
+========================================= */
+.search-section {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.search-section input {
+  width: calc(100% - 100px);
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+}
+.search-section button {
+  padding: 0.8rem 1rem;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #0078d7;
+  color: #fff;
+  cursor: pointer;
+}
+.search-section button:hover {
+  background: #005bb5;
+}
+#searchResult {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.game-card {
+  width: 90%;
+  max-width: 550px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: left;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.game-card strong {
+  font-size: 1.2rem;
+  color: #333;
+}
+.game-card p {
+  margin: 6px 0;
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+.more-link {
+  max-width: 600px;
+  margin: 1rem auto 2rem;
+  text-align: right;
+  font-size: 0.9rem;
+}
+.more-link span {
+  margin: 0 0.3rem;
+}
+.more-link a {
+  color: #0078d7;
+}
+.more-link a:hover {
+  text-decoration: underline;
+}
+.drive-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.drive-links a {
+  padding: 0.75rem 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  color: #333;
+  transition: background-color 0.2s;
+}
+.drive-links a:hover {
+  background-color: #e0f0ff;
+}
+
+/* =========================================
+   8. 傳承與測試頁 (傳承.html)
+========================================= */
+.grid-main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 2rem;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .grid-main {
+    grid-template-columns: 1fr;
+  }
+}
+.gold-section {
+  border: 2px solid #DEB887;
+  border-radius: 10px;
+  background-color: #fffaf0;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.gold-section h2 {
+  margin-top: 0;
+  color: #6a4e3b;
+}
+.gold-section p {
+  line-height: 1.8;
+  color: #444;
+}
+.hover-info {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.hover-info .popover {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  width: 600px;
+  background-color: #fffaf0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 1.2rem;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  line-height: 1.6;
+  overflow-x: auto;
+}
+.hover-info:hover .popover {
+  display: block;
+}
+
+/* =========================================
+   全站通用：精美外框按鈕樣式 (套用於各頁面)
+========================================= */
+.btn-outline {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #5d432c;           /* 質感深駝色文字 */
+  background-color: #fff;   /* 純白底色 */
+  border: 2px solid #eae3da;/* 柔和的淺米色邊框 */
+  border-radius: 8px;       /* 圓角 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 微妙陰影 */
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 按鈕滑鼠懸停特效 */
+.btn-outline:hover {
+  background-color: #5d432c;
+  color: #fff;
+  border-color: #5d432c;
+  transform: translateY(-2px); /* 輕微往上飄浮 */
+  box-shadow: 0 4px 8px rgba(93,67,44,0.2);
+  text-decoration: none;       /* 懸停時不顯示底線 */
+}
+/* =========================================
+   規章辦法專用排版 (.doc-content)
+========================================= */
+.doc-content {
+  max-width: 900px;
+  margin: 0 auto 4rem auto;
+  color: #333;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  text-align: justify;
+}
+
+/* 針對「第一項 總則」這種大標題 */
+.doc-content h2 {
+  font-size: 1.25rem;
+  color: #5c4033;
+  margin-top: 2.5rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid #e0d6c6;
+  padding-bottom: 0.5rem;
+}
+
+/* 針對「第一條...」進行第一層縮排 */
+.doc-content p.clause {
+  margin: 0.5rem 0 0.5rem 2rem;
+}
+
+/* 針對「(1.)...」進行第二層縮排 */
+.doc-content p.sub-clause {
+  margin: 0.3rem 0 0.3rem 4rem;
+  color: #555;
+}

@@ -54,30 +54,59 @@ body {
   margin: 1.5rem 0;
   color: #5b4636; /* 米色系深色文字 */
 }
-/* 報表連結兩排、靠右，並與下方留白 */
+/* =========================================
+   財務報表：卡片按鈕區塊排版
+========================================= */
 .report-links {
-  margin: 1.5rem 0 3rem;  /* 上方 1.5rem、下方 3rem */
+  display: flex;
+  flex-wrap: wrap;         /* 裝不下會自動換行 */
+  justify-content: center; /* 讓按鈕在畫面正中間整齊排列 */
+  gap: 1.5rem;             /* 按鈕之間的絕佳呼吸空間 */
+  margin: 3rem auto 5rem;
+  max-width: 900px;
+}
+
+/* 移植自社團首頁的精美外框按鈕 */
+.link-card {
+  display: inline-block;
+  background-color: #fff;
+  border: 2px solid #deb887;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: #5c4033;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.link-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* 針對附加照片/簡報的次要小按鈕 */
+.link-card.small-btn {
+  padding: 0.6rem 1.2rem;
   font-size: 0.9rem;
+  border-color: #e0dcd3;
+  color: #8b735b;
 }
 
-.report-links p {
-  text-align: right;      /* 每行內容靠右 */
-  margin: 0.3rem 0;       /* 行間距 */
+.link-card.small-btn:hover {
+  border-color: #deb887;
+  color: #5c4033;
 }
 
-.report-links a {
-  color: #5b4636;         /* 米色系深色 */
-  text-decoration: underline;
+.analysis-box {
+  background-color: #f9f5f0;
+  border-left: 5px solid #8b735b;
+  padding: 20px 30px;
+  margin: 40px 60px;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 8px;
 }
-
-  .analysis-box {
-    background-color: #f9f5f0;
-    border-left: 5px solid #8b735b;
-    padding: 20px 30px;
-    margin: 40px 60px;
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #333;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    border-radius: 8px;
-  }
