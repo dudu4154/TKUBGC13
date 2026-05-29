@@ -77,3 +77,31 @@ main {
     width: 100%;
     display: block;
   }
+
+  /* 容器變成超連結，加上 text-decoration 確保不會跑出底線 */
+.pdca-links {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none; 
+}
+
+/* 原本是 .pdca-links a，現在改成 .pdca-links span，畫出四個假按鈕 */
+.pdca-links span {
+  padding: 6px 10px;
+  background-color: #DEB887;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+/* 滑鼠移過去的時候稍微變色，讓它看起來更有按鈕的感覺 */
+.pdca-links:hover span {
+  background-color: #cda26f;
+}
